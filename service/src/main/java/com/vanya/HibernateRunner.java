@@ -1,5 +1,6 @@
 package com.vanya;
 
+import com.vanya.entity.Role;
 import com.vanya.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +20,7 @@ public class HibernateRunner {
             User user = User.builder()
                     .username("AutoRazvozBy")
                     .password("121324")
-                    .role("carrier")
+                    .role(Role.CARRIER)
                     .build();
             session.save(user);
 

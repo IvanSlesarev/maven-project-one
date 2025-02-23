@@ -13,24 +13,23 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "routes")
-public class Route {
+@Table(name = "cargo_requests")
+public class CargoRequests {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private User user;
 
-    @AttributeOverride(name = "startPoint", column = @Column(name = "start_point"))
-    private String startPoint;
-
-    @AttributeOverride(name = "endPoint", column = @Column(name = "end_point"))
-    private String endPoint;
-    private Double price;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Route route;
+    @AttributeOverride(name = "description", column = @Column(name = "cargo_description"))
+    private String description;
+    private Integer weight;
+    private Integer volume;
 
     @Enumerated(EnumType.STRING)
-    private RouteStatus status;
+    private CargoRequestStatus CargoRequestStatus;
 }

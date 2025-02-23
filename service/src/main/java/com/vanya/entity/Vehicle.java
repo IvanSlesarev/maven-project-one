@@ -1,8 +1,6 @@
 package com.vanya.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,11 +16,19 @@ import lombok.NoArgsConstructor;
 public class Vehicle {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer carrierId;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     private String vehicleNumber;
     private String trailerNumber;
+
+    @AttributeOverride(name = "driverName", column = @Column(name = "driver_name"))
     private String driverName;
-    private String driverContactInfo;
+
+    @AttributeOverride(name = "driverContactInfo", column = @Column(name = "driver_contact_info"))
+    private String info;
 }
 

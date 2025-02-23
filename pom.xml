@@ -45,6 +45,11 @@
                 <version>6.6.7.Final</version>
             </dependency>
             <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>6.3.1.Final</version>
+            </dependency>
+            <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.7.5</version>
@@ -56,11 +61,6 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>com.vladmihalcea</groupId>
-                <artifactId>hibernate-types-52</artifactId>
-                <version>2.21.1</version>
-            </dependency>
-            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>2.0.16</version>
@@ -70,6 +70,18 @@
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>2.0.16</version>
                 <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>2.3.232</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.24.2</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
