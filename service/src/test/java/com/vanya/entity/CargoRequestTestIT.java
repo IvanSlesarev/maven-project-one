@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class CargoRequestsTestIT {
+class CargoRequestTestIT {
     private static SessionFactory sessionFactory;
     private Session session;
 
@@ -23,8 +23,8 @@ class CargoRequestsTestIT {
         session = sessionFactory.openSession();
         session.getTransaction().begin();
 
-        session.createQuery("DELETE FROM CargoRequests").executeUpdate();
-        session.createQuery("DELETE FROM Route").executeUpdate();
+        session.createQuery("DELETE FROM CargoRequest").executeUpdate();
+        session.createQuery("DELETE FROM DriverRequest").executeUpdate();
         session.createQuery("DELETE FROM User").executeUpdate();
         session.getTransaction().commit();
 
@@ -56,17 +56,14 @@ class CargoRequestsTestIT {
                 .legalName("legal name")
                 .build();
 
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
 
-        CargoRequests cargoRequest = CargoRequests.builder()
+        CargoRequest cargoRequest = CargoRequest.builder()
                 .user(user)
-                .route(route)
                 .description("Cargo Description")
                 .weight(500)
                 .volume(10)
@@ -74,12 +71,12 @@ class CargoRequestsTestIT {
                 .build();
 
         session.persist(user);
-        session.persist(route);
+        session.persist(driverRequest);
         session.persist(cargoRequest);
         session.getTransaction().commit();
         session.clear();
 
-        CargoRequests foundCargoRequest = session.find(CargoRequests.class, cargoRequest.getId());
+        CargoRequest foundCargoRequest = session.find(CargoRequest.class, cargoRequest.getId());
         assertThat(foundCargoRequest).isNotNull();
         assertThat(foundCargoRequest.getDescription()).isEqualTo("Cargo Description");
         assertThat(foundCargoRequest.getUser().getUsername()).startsWith("unique_username_");
@@ -96,18 +93,15 @@ class CargoRequestsTestIT {
                 .build();
         session.persist(user);
 
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
-        session.persist(route);
+        session.persist(driverRequest);
 
-        CargoRequests cargoRequest = CargoRequests.builder()
+        CargoRequest cargoRequest = CargoRequest.builder()
                 .user(user)
-                .route(route)
                 .description("Cargo Description")
                 .weight(500)
                 .volume(10)
@@ -117,7 +111,7 @@ class CargoRequestsTestIT {
         session.getTransaction().commit();
         session.clear();
 
-        CargoRequests foundCargoRequest = session.find(CargoRequests.class, cargoRequest.getId());
+        CargoRequest foundCargoRequest = session.find(CargoRequest.class, cargoRequest.getId());
 
         assertThat(foundCargoRequest).isNotNull();
         assertThat(foundCargoRequest.getWeight()).isEqualTo(500);
@@ -134,18 +128,15 @@ class CargoRequestsTestIT {
                 .build();
         session.persist(user);
 
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
-        session.persist(route);
+        session.persist(driverRequest);
 
-        CargoRequests cargoRequest = CargoRequests.builder()
+        CargoRequest cargoRequest = CargoRequest.builder()
                 .user(user)
-                .route(route)
                 .description("Cargo Description")
                 .weight(500)
                 .volume(10)
@@ -156,13 +147,13 @@ class CargoRequestsTestIT {
         session.clear();
 
         session.getTransaction().begin();
-        CargoRequests foundCargoRequest = session.find(CargoRequests.class, cargoRequest.getId());
+        CargoRequest foundCargoRequest = session.find(CargoRequest.class, cargoRequest.getId());
         foundCargoRequest.setWeight(600);
         session.merge(foundCargoRequest);
         session.getTransaction().commit();
         session.clear();
 
-        CargoRequests updatedCargoRequest = session.find(CargoRequests.class, cargoRequest.getId());
+        CargoRequest updatedCargoRequest = session.find(CargoRequest.class, cargoRequest.getId());
         assertThat(updatedCargoRequest.getWeight()).isEqualTo(600);
     }
 
@@ -176,17 +167,14 @@ class CargoRequestsTestIT {
                 .legalName("legal name")
                 .build();
         session.persist(user);
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
-        session.persist(route);
-        CargoRequests cargoRequest = CargoRequests.builder()
+        session.persist(driverRequest);
+        CargoRequest cargoRequest = CargoRequest.builder()
                 .user(user)
-                .route(route)
                 .description("Cargo Description")
                 .weight(500)
                 .volume(10)
@@ -197,12 +185,12 @@ class CargoRequestsTestIT {
         session.clear();
 
         session.getTransaction().begin();
-        CargoRequests foundCargoRequest = session.find(CargoRequests.class, cargoRequest.getId());
+        CargoRequest foundCargoRequest = session.find(CargoRequest.class, cargoRequest.getId());
         session.remove(foundCargoRequest);
         session.getTransaction().commit();
         session.clear();
 
-        CargoRequests deletedCargoRequest = session.find(CargoRequests.class, cargoRequest.getId());
+        CargoRequest deletedCargoRequest = session.find(CargoRequest.class, cargoRequest.getId());
         assertThat(deletedCargoRequest).isNull();
     }
 }

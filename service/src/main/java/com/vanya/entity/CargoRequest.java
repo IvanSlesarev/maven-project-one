@@ -6,15 +6,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "cargo_requests")
-public class CargoRequests {
+@Table(name = "cargo_request")
+public class CargoRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +20,8 @@ public class CargoRequests {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User user;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Route route;
-    @AttributeOverride(name = "description", column = @Column(name = "cargo_description"))
+    private String startPoint;
+    private String endPoint;
     private String description;
     private Integer weight;
     private Integer volume;

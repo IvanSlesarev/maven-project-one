@@ -15,12 +15,12 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
 
     <mapping class="com.vanya.entity.User"/>
-    <mapping class="com.vanya.entity.Route"/>
+    <mapping class="com.vanya.entity.DriverRequest"/>
     <mapping class="com.vanya.entity.Vehicle"/>
     <mapping class="com.vanya.entity.CargoRequestStatus"/>
     <mapping class="com.vanya.entity.Role"/>
-    <mapping class="com.vanya.entity.RouteStatus"/>
-    <mapping class="com.vanya.entity.CargoRequests"/>
+    <mapping class="com.vanya.entity.DriverRequestStatus"/>
+    <mapping class="com.vanya.entity.CargoRequest"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
   </session-factory>

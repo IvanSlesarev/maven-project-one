@@ -4,8 +4,17 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+
+@NamedEntityGraph (
+        name = "UserWithRole",
+        attributeNodes = {
+                @NamedAttributeNode("role"),
+                @NamedAttributeNode("info")
+        }
+)
 
 @Data
 @NoArgsConstructor
@@ -13,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "users")
+@EqualsAndHashCode(of = "username")
 public class User {
 
     @Id
@@ -26,11 +36,8 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    @AttributeOverride(name = "contactInfo", column = @Column(name = "contact_info"))
     private String info;
 
     @AttributeOverride(name = "legalName", column = @Column(name = "legal_name"))
     private String legalName;
-
 }

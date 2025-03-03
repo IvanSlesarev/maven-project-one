@@ -24,7 +24,7 @@ class RouteTestIT {
         session = sessionFactory.openSession();
         session.getTransaction().begin();
 
-        session.createQuery("DELETE FROM Route").executeUpdate();
+        session.createQuery("DELETE FROM DriverRequest").executeUpdate();
         session.createQuery("DELETE FROM User").executeUpdate();
         session.getTransaction().commit();
 
@@ -56,12 +56,10 @@ class RouteTestIT {
                 .legalName("legal name")
                 .build();
 
-        Route route = Route.builder()
+        DriverRequest route = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
 
         session.persist(user);
@@ -69,9 +67,8 @@ class RouteTestIT {
         session.getTransaction().commit();
         session.clear();
 
-        Route foundRoute = session.find(Route.class, route.getId());
+        DriverRequest foundRoute = session.find(DriverRequest.class, route.getId());
         assertThat(foundRoute).isNotNull();
-        assertThat(foundRoute.getStartPoint()).isEqualTo("Start Point");
         assertThat(foundRoute.getUser().getUsername()).startsWith("unique_username_");
     }
 
@@ -86,21 +83,18 @@ class RouteTestIT {
                 .build();
         session.persist(user);
 
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
-        session.persist(route);
+        session.persist(driverRequest);
         session.getTransaction().commit();
         session.clear();
 
-        Route foundRoute = session.find(Route.class, route.getId());
+        DriverRequest foundRoute = session.find(DriverRequest.class, driverRequest.getId());
 
         assertThat(foundRoute).isNotNull();
-        assertThat(foundRoute.getEndPoint()).isEqualTo("End Point");
     }
 
     @Test
@@ -114,25 +108,23 @@ class RouteTestIT {
                 .build();
         session.persist(user);
 
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
-        session.persist(route);
+        session.persist(driverRequest);
         session.getTransaction().commit();
         session.clear();
 
         session.getTransaction().begin();
-        Route foundRoute = session.find(Route.class, route.getId());
+        DriverRequest foundRoute = session.find(DriverRequest.class, driverRequest.getId());
         foundRoute.setPrice(200.0);
         session.merge(foundRoute);
         session.getTransaction().commit();
         session.clear();
 
-        Route updatedRoute = session.find(Route.class, route.getId());
+        DriverRequest updatedRoute = session.find(DriverRequest.class, driverRequest.getId());
         assertThat(updatedRoute.getPrice()).isEqualTo(200.0);
     }
 
@@ -147,24 +139,22 @@ class RouteTestIT {
                 .build();
         session.persist(user);
 
-        Route route = Route.builder()
+        DriverRequest driverRequest = DriverRequest.builder()
                 .user(user)
-                .startPoint("Start Point")
-                .endPoint("End Point")
                 .price(100.0)
-                .status(RouteStatus.OPEN)
+                .status(DriverRequestStatus.OPEN)
                 .build();
-        session.persist(route);
+        session.persist(driverRequest);
         session.getTransaction().commit();
         session.clear();
 
         session.getTransaction().begin();
-        Route foundRoute = session.find(Route.class, route.getId());
+        DriverRequest foundRoute = session.find(DriverRequest.class, driverRequest.getId());
         session.remove(foundRoute);
         session.getTransaction().commit();
         session.clear();
 
-        Route deletedRoute = session.find(Route.class, route.getId());
+        DriverRequest deletedRoute = session.find(DriverRequest.class, driverRequest.getId());
         assertThat(deletedRoute).isNull();
     }
 }

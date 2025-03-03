@@ -1,6 +1,6 @@
 package com.vanya.entity;
 
-public enum RouteStatus {
+public enum DriverRequestStatus {
     OPEN,
     IN_PROGRESS,
     REJECTED,

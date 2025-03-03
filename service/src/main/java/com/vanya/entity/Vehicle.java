@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "vehicles")
+@Table(name = "vehicle")
 public class Vehicle {
 
     @Id
@@ -20,7 +20,7 @@ public class Vehicle {
     private Integer id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "id")
     private User user;
     private String vehicleNumber;
     private String trailerNumber;

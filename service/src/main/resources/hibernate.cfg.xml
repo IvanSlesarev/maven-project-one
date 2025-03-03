@@ -13,11 +13,11 @@
     <property name="format_sql">true</property>
 
     <mapping class="com.vanya.entity.User"/>
-    <mapping class="com.vanya.entity.Route"/>
+    <mapping class="com.vanya.entity.DriverRequest"/>
     <mapping class="com.vanya.entity.Vehicle"/>
     <mapping class="com.vanya.entity.CargoRequestStatus"/>
     <mapping class="com.vanya.entity.Role"/>
-    <mapping class="com.vanya.entity.RouteStatus"/>
+    <mapping class="com.vanya.entity.DriverRequestStatus"/>
 
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
