@@ -37,7 +37,5 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     private String info;
-
-    @AttributeOverride(name = "legalName", column = @Column(name = "legal_name"))
     private String legalName;
 }

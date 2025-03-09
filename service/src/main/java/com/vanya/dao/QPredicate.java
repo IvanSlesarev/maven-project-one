@@ -1,4 +1,4 @@
-package com.vanya.Dao;
+package com.vanya.dao;
 
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;

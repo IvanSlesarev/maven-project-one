@@ -1,4 +1,4 @@
-package com.vanya.Dao;
+package com.vanya.dao;
 
 import com.vanya.entity.Role;
 import com.vanya.entity.User;

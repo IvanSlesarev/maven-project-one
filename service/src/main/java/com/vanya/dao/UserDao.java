@@ -1,4 +1,4 @@
-package com.vanya.Dao;
+package com.vanya.dao;
 
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vanya.entity.QUser;
@@ -12,14 +12,12 @@ import java.util.List;
 
 import static com.vanya.entity.QUser.user;
 
-
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserDao {
 
     private static final UserDao INSTANCE = new UserDao();
 
-    List<User> findAllByUserName(Session session, String userName) {
+   public List<User> findAllByUserName(Session session, String userName) {
         return new JPAQuery<User>(session)
                 .select(QUser.user)
                 .from(QUser.user)

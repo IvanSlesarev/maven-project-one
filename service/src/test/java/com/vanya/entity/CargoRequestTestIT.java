@@ -118,7 +118,7 @@ class CargoRequestTestIT {
     }
 
     @Test
-    public void whenUpdateCargoRequestThenCargoRequestIsUpdated() {
+    void whenUpdateCargoRequestThenCargoRequestIsUpdated() {
         User user = User.builder()
                 .username("unique_username_")
                 .password("password")

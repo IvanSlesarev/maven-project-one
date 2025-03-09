@@ -13,14 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "vehicle")
-public class Vehicle {
+public class Vehicle implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private User user;
     private String vehicleNumber;
     private String trailerNumber;

@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +13,7 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 @Table(name = "driver_request")
-public class DriverRequest {
+public class DriverRequest implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

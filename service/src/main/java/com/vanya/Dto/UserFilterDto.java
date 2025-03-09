@@ -7,6 +7,6 @@ import lombok.Value;
 @Value
 @Builder
 public class UserFilterDto {
-   public String username;
-   public Role role;
+  String username;
+  Role role;
 }
