@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @RequiredArgsConstructor
-class UserDaoTestIT {
+class UserDaoIT {
     private SessionFactory sessionFactory;
     private UserDao userDao;
 
@@ -39,7 +39,7 @@ class UserDaoTestIT {
     }
 
     @Test
-    void testFindAllByUserName() {
+    void findAllByUserName() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             User user1 = new User();
@@ -59,7 +59,7 @@ class UserDaoTestIT {
     }
 
     @Test
-    void testFindAllByRole() {
+    void findAllByRole() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             User user1 = new User();

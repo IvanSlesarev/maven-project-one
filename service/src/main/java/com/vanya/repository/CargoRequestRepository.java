@@ -1,16 +1,19 @@
-package com.vanya.dao;
+package com.vanya.repository;
 
 import com.vanya.entity.CargoRequest;
 import com.vanya.entity.CargoRequestStatus;
 import com.vanya.entity.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class CargoRequestDao extends RepositoryBase<Integer, CargoRequest> {
+@Repository
+public class CargoRequestRepository extends RepositoryBase<Integer, CargoRequest> {
 
-    public CargoRequestDao(EntityManager entityManager) {
-        super(CargoRequest.class, entityManager);
+    public CargoRequestRepository() {
+        super(CargoRequest.class);
     }
 
     public List<CargoRequest> findByStatus(CargoRequestStatus status) {

@@ -1,7 +1,11 @@
 package com.vanya.util;
 
 import com.vanya.entity.Audit;
+import com.vanya.entity.CargoRequest;
+import com.vanya.entity.CargoRequestStatus;
+import com.vanya.entity.Role;
 import com.vanya.entity.User;
+import com.vanya.entity.Vehicle;
 import lombok.experimental.UtilityClass;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy;
@@ -33,6 +37,10 @@ public class HibernateUtil {
         configuration.setPhysicalNamingStrategy(new CamelCaseToUnderscoresNamingStrategy());
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Audit.class);
+        configuration.addAnnotatedClass(Vehicle.class);
+        configuration.addAnnotatedClass(Role.class);
+        configuration.addAnnotatedClass(CargoRequest.class);
+        configuration.addAnnotatedClass(CargoRequestStatus.class);
         return configuration;
     }
 }

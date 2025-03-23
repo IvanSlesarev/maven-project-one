@@ -1,7 +1,7 @@
 package com.vanya.dao;
 
+
 import com.querydsl.jpa.impl.JPAQuery;
-import com.vanya.entity.QUser;
 import com.vanya.entity.Role;
 import com.vanya.entity.User;
 import lombok.AccessLevel;
@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.vanya.entity.QUser.user;
 
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserDao {
 
@@ -19,8 +20,8 @@ public class UserDao {
 
    public List<User> findAllByUserName(Session session, String userName) {
         return new JPAQuery<User>(session)
-                .select(QUser.user)
-                .from(QUser.user)
+                .select(user)
+                .from(user)
                 .where(user.username.eq(userName))
                 .fetch();
     }

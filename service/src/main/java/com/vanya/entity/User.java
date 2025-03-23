@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 
 @NamedEntityGraph (
         name = "UserWithRole",
@@ -23,11 +25,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "users")
 @EqualsAndHashCode(of = "username")
-public class User {
+public class User implements BaseEntity<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(unique = true)
     private String username;
