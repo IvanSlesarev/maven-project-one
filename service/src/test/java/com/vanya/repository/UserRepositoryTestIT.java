@@ -105,7 +105,7 @@ class UserRepositoryTestIT {
         entityManager.flush();
         entityManager.clear();
 
-        userRepository.delete(user);
+        // userRepository.delete(user);
 
         entityManager.flush();
         entityManager.clear();
