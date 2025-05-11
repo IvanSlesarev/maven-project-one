@@ -14,15 +14,9 @@ import static com.vanya.entity.QUser.user;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>, QuerydslPredicateExecutor<User> {
-    @Override
-    @EntityGraph(value = "UserWithRole")
-    List<User> findAll();
 
-    @EntityGraph(value = "UserWithRole")  // Подгружаем связанные сущности
+    @EntityGraph(value = "UserWithRole")
     Optional<User> findByUsername(String username);
-
-    @EntityGraph(value = "UserWithRole")
-    Optional<User> findById(Integer id);
 
     boolean existsByUsername(String username);
 }

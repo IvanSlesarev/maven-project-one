@@ -1,7 +1,10 @@
 package com.vanya.controller;
 
+import com.vanya.dto.user.UserCrateEditDto;
+import com.vanya.dto.user.UserReadDto;
 import com.vanya.entity.User;
 import com.vanya.service.UserService;
+import com.vanya.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -24,24 +28,24 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public List<User> findAll() {
+    public List<UserReadDto> findAll() {
         return userService.findAll();
     }
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable Integer id) {
+    public Optional<UserReadDto> findById(@PathVariable Integer id) {
         return userService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody User user) {
-        return userService.create(user);
+    public UserReadDto create(@RequestBody UserCrateEditDto userCrateEditDto) {
+        return userService.create(userCrateEditDto);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Integer id, @RequestBody User user) {
-        return userService.update(id, user);
+    public Optional <UserReadDto> update(@PathVariable Integer id, @RequestBody UserCrateEditDto userCrateEditDto) {
+        return userService.update(id, userCrateEditDto);
     }
 
     @DeleteMapping("/{id}")

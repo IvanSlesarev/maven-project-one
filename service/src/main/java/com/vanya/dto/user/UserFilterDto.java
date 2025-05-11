@@ -1,4 +1,4 @@
-package com.vanya.Dto;
+package com.vanya.dto.user;
 
 import com.vanya.entity.Role;
 import lombok.Builder;
